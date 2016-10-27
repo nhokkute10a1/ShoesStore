@@ -1,0 +1,112 @@
+﻿@model ShoseStore.Models.SANPHAM
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>XÁC NHẬN THÔNG TIN SÁCH CẦN XÓA</h2>
+
+<h3>Bạn có thật sự muốn xóa nó không?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên loại:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOAISP.TENLOAI)
+        </dd>
+
+        <dt>
+            Tên NSX:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHASANXUAT.TENNSX)
+        </dd>
+
+        <dt>
+            Tên sản phẩm:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENSP)
+        </dd>
+
+        <dt>
+            Size:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SIZE)
+        </dd>
+
+        <dt>
+            Giá bán:
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,0}",Model.GIABAN) VNĐ
+        </dd>
+
+        <dt>
+            Mô tả:
+        </dt>
+
+        <dd style="width:600px;text-align:justify">
+            @Html.DisplayFor(model => model.MOTA)
+        </dd>
+
+        <dt>
+            Ảnh sản phẩm:
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/images/sanpham/"+Model.ANHBIA)" width="120px" />
+        </dd>
+
+        <dt>
+            Ngày cập nhập:
+        </dt>
+
+        <dd>
+            @String.Format("{0:dd/MM/yyyy}", Model.NGAYCAPNHAP)
+        </dd>
+
+        <dt>
+            Số lượng tồn:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SOLUONGTON)
+        </dd>
+
+        <dt>
+            Lượt mua:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LUOTMUA)
+        </dd>
+
+        <dt>
+            Giá bán:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIAMGIA)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="XÓA" class="btn btn-default" /> |
+            @Html.ActionLink("Quay về trang trước", "SanPham")
+        </div>
+    }
+</div>

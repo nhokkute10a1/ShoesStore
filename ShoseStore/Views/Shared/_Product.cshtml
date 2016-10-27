@@ -1,0 +1,477 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type='text/css' />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="~/Content/style.css" rel="stylesheet" type='text/css' />
+    <!-- Custom Theme files -->
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- webfonts -->
+    @*<link href='http://fonts.googleapis.com/css?family=Glegoo:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>*@
+    <link href="~/Content/owl.carousel.css" rel="stylesheet" type='text/css' />
+    <script src="~/Scripts/responsiveslides.min.js"></script>
+    <script src="~/Scripts/owl.carousel.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/JsSource.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.form.js"></script>
+    <!--Nhúng thanh chat zopim -->
+    <!--Start of Zopim Live Chat Script-->
+    <script type="text/javascript">
+window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+$.src="//v2.zopim.com/?4IYygNG4IYE5RbhnMx6cXGh59uBhwsZS";z.t=+new Date;$.
+type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+    </script>
+    <!--End of Zopim Live Chat Script-->
+</head>
+<body>
+    <div>
+
+        <!-- header -->
+        <div class="header">
+
+            <!-- top-header -->
+            <div class="top-header">
+
+            </div>
+            <!-- /top-header -->
+            <!-- bottom-header -->
+            <div class="bottom-header">
+                <div class="container">
+                    <div class="bottom-header-left">
+                        <p>The Finest Genuine Leather meet with Ingenious  Craftsmen Shoes </p>
+                    </div>
+                    <div class="logo">
+                        <a href="index.html"><img src="~/images/logo.png" title="gaia" /></a>
+                    </div>
+                    <div class="bottom-header-right">
+                        <div class="input-group search">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="timkiem">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /bottom-header -->
+        </div>
+        <!-- header -->
+        <!--- top-nav -->
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
+                        @*<a href="../" class="navbar-brand">Bootswatch</a>*@
+                        <span class="sr-only">Danh muc san pham</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <ul class="navbar-brand visible-sm visible-xs">
+                        @if (@Session["Taikhoan"] != null)
+                        {
+                            ShoseStore.Models.KHACHHANG kh = (ShoseStore.Models.KHACHHANG)Session["Taikhoan"];
+                            <li style="color:green;" id="tendangxuat">Chào:@kh.HOTEN </li>
+                            <li><a href="@Url.Action("DangXuat","UserAccount")" class="dangxuat"><span class="glyphicon glyphicon-off"></span></a></li>
+                            <li>
+                                @{Html.RenderAction("GiohangPartial", "GioHang");}
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#myLogin" data-toggle="modal" class="login">	<span class="glyphicon glyphicon-log-in"></span> Đăng Nhập</a>
+                            </li>
+                            <li>
+
+                                <a href="#register" data-toggle="modal" class="signup"><span class="glyphicon glyphicon-edit"></span> Đăng Ký</a>
+                            </li>
+                            <li>
+                                @{Html.RenderAction("GiohangPartial", "GioHang");}
+                            </li>
+                        }
+
+                    </ul>
+                    <a class="navbar-brand  visible-xs" href="#" style="color:blue;margin-top:3px;float:right;" id="menu">MENU</a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-main" aria-expanded="false">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="~/ShoseStore/Index">Trang Chủ</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Dành Cho Nữ <span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                                @Html.Action("LoaiSpNu", "ShoseStore")
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Dành Cho Nam <span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="download">
+                                @Html.Action("LoaiSpNam", "ShoseStore")
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Thương Hiệu <span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="download">
+                                @Html.Action("Nhasanxuat", "ShoseStore")
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/About/TinTuc">TinTức</a>
+                        </li>
+                        <li>
+                            <a href="/About/LienHe">Liên Hệ</a>
+                        </li>
+
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (@Session["Taikhoan"] != null)
+                        {
+                            ShoseStore.Models.KHACHHANG kh = (ShoseStore.Models.KHACHHANG)Session["Taikhoan"];
+                            <li style="color:green;margin-top:15px; padding-left:15px"> Xin Chào:@kh.HOTEN</li>
+                            <li><a href="@Url.Action("DangXuat", "UserAccount")">Đăng Xuất</a></li>
+
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#myLogin" data-toggle="modal">	<span class="glyphicon glyphicon-log-in"></span> Đăng Nhập</a>
+                            </li>
+                            <li>
+
+                                <a href="#register" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Đăng Ký</a>
+                            </li>
+                            @*<li>
+                                <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Giỏ Hàng</a>
+                            </li>*@
+                        }
+                        <li>
+                            @{Html.RenderAction("GiohangPartial", "GioHang");}
+                        </li>
+                            
+                                
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <!--- top-nav -->
+        <!-- script-for-nav -->
+        <script>
+            $(document).ready(function () {
+                $("span.menu").click(function () {
+                    $(".top-nav ul").slideToggle(500);
+                });
+            });
+        </script>
+
+        <!-- /script-for-nav -->
+        <!-- banner -->
+        <div class="banner">
+            <div class="container">
+                <!--- img-slider --->
+                <div class="img-slider">
+                    <!----start-slider-script---->
+                    <script>
+                        // You can also use "$(window).load(function() {"
+                        $(function () {
+                            // Slideshow 4
+                            $("#slider4").responsiveSlides({
+                                auto: true,
+                                pager: true,
+                                nav: true,
+                                speed: 500,
+                                namespace: "callbacks",
+                                before: function () {
+                                    $('.events').append("<li>before event fired.</li>");
+                                },
+                                after: function () {
+                                    $('.events').append("<li>after event fired.</li>");
+                                }
+                            });
+
+                        });
+                    </script>
+                    <!----//End-slider-script---->
+                    <!-- Slideshow 4 -->
+                    <div id="top" class="callbacks_container">
+                        <ul class="rslides" id="slider4">
+                            <li>
+                                <img class="img-responsive samesize" src="~/images/slide1.jpg" alt="">
+                            </li>
+                            <li>
+                                <img class="img-responsive samesize" src="~/images/silide2.jpg" alt="">
+
+                            </li>
+                            <li>
+                                <img class="img-responsive samesize" src="~/images/silide3.jpg" alt="">
+
+                            </li>
+                            <li>
+                                <img class="img-responsive samesize" src="~/images/silide4.jpg" alt="">
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <!-- slider -->
+            </div>
+        </div>
+        <!-- banner -->
+        <!--page header-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="leadnu"><h2>Dành Cho Nữ</h2></div>
+                    <div id="nu">
+                        @Html.Action("LoaiSpNu", "ShoseStore")
+                    </div>
+
+                    <div class="leadnam"><h2>Dành Cho Nam</h2></div>
+                    <div id="nam">
+                        @Html.Action("LoaiSpNam", "ShoseStore")
+                    </div>
+
+                    <div class="leadth"><h2>Thương Hiệu</h2></div>
+                    <div id="th">
+                        @Html.Action("Nhasanxuat", "ShoseStore")
+                    </div>
+                </div>
+
+
+                <div class="col-md-9">
+                    <!--showw sp ra-->
+                    @RenderBody()
+                    
+                </div>
+            </div>
+        </div>
+        <!--page header-->
+        <!-- footer -->
+        <div class="footer">
+            <div class="container">
+                <div class="footer-grids">
+                    <div class="col-md-3 footer-grid">
+                        <h3>Information</h3>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="#">Return</a></li>
+                            <li><a href="#">Delivery Information</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 footer-grid">
+                        <h3>Extras</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="collections.html">Collections</a></li>
+                            <li><a href="404.html">New Arrivals</a></li>
+                            <li><a href="404.html">Sale</a></li>
+                            <li><a href="404.html">Accessories</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 footer-grid testmonial">
+                        <h3>Testimonials</h3>
+                        <div class="testmonial-grid">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                            <a href="#">John Smith,<span>Occupation</span></a>
+                        </div>
+                        <div class="clearfix"> </div>
+                        <div class="testmonial-grid">
+                            <p>In reprehenderit in voluptate velit esse cillum.</p>
+                            <a href="#">John Smith,<span>Occupation</span></a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 footer-grid about-grid">
+                        <h3>About Us</h3>
+                        <p>Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <!-- social-icons -->
+                <div class="social-icons text-center">
+                    <ul>
+                        <li><a href="#"><span class="facebook"> </span></a></li>
+                        <li><a href="#"><span class="twitter"> </span></a></li>
+                        <li><a href="#"><span class="gpluse"> </span></a></li>
+                        <li><a href="#"><span class="pin"> </span></a></li>
+                        <li><a href="#"><span class="ens"> </span></a></li>
+                        <li><a href="#"><span class="you"> </span></a></li>
+                    </ul>
+                </div>
+                <!-- social-icons -->
+                <!-- footer-bottom -->
+                <div class="footer-bottom">
+                    <div class="footer-bottom-left">
+                        <p>GAIA inc &#169 by Ñïñë Ƭäïlëd ƒöxˆˆ -  @DateTime.Now.Year </p>
+                    </div>
+                    <!--  <div class="footer-bottom-right">
+                    <ul>
+                        <li><span class="visa"> </span></li>
+                        <li><span class="master"> </span></li>
+                        <li><span class="paypla"> </span></li>
+                        <li><span class="ami"> </span></li>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div> -->
+                    <!-- footer-bottom -->
+                </div>
+
+            </div>
+        </div>
+        <!-- footer -->
+    </div>
+    <!---------------------POP-UP LOGIN---------------->
+    <div class="modal fade" id="myLogin" role="dialog" tabindex="-1" aria-labelledby="myModalLabel2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="text-align: center;" id="myModalLabel2">Đăng Nhập Tài Khoản</h4>
+                </div>
+                <div class="modal-body">
+                    <!-----FORM LOGIN--------->
+                    <form class="form-horizontal" action="/UserAccount/Login" method="post" id="loginForm">
+                        <p id="demo" style="color:red;margin-left:100px"></p>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="name">Tài khoản:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="name" name="TenDN" placeholder="Enter name">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="pwd">Mật khẩu:</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="pwd" name="Matkhau" placeholder="Enter password">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-5 col-sm-6">
+                                <a href="#register" data-toggle="modal"> Bạn có tài khoản chưa?</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-5 col-sm-6">
+                                <button type="submit" class="btn btn-default" style="max-width:300px; text-align:center;">ĐĂNG NHẬP</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="errors"></div>
+                    <!--------------------END FORM LOGIN--------------------->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---------------------POP-UP LOGIN---------------->
+    <!---------POP-UP REGISTER--------->
+    <div class="modal fade" id="register" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align:center">Đăng Ký Thành Viên</h4>
+                </div>
+                <div class="modal-body">
+                    <!---------FORM REGISTER---------->
+                    @Html.ValidationSummary(true)
+                    <form class="form-horizontal" action="/UserAccount/SignUp" method="post" id="formDangKy">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="name">Họ tên khách hàng:</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="name" name="HoTenKH" placeholder="Enter name">
+                                @*@ViewData["Loi1"]*@
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="user">Tên đăng nhập:</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="user" name="TenDN" placeholder="Enter user">
+                                @*@ViewData["Loi2"]*@
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="pwd">Mật khẩu:</label>
+                            <div class="col-sm-7">
+                                <input type="password" class="form-control" id="pwd" name="Matkhau" placeholder="Enter password">
+                                @*@ViewData["Loi3"]*@
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="pwd_again">Mật khẩu nhập lại:</label>
+                            <div class="col-sm-7">
+                                <input type="password" class="form-control" id="pwd_agin" name="Matkhaunhaplai" placeholder="Enter password">
+                                @*@ViewData["Loi4"]*@
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="email">Email:</label>
+                            <div class="col-sm-7">
+                                <input type="email" class="form-control" id="email" name="Email" placeholder="Enter email">
+                                @*@ViewData["Loi5"]*@
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="address">Địa chỉ:</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="address" name="Diachi" placeholder="Enter address">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="phone">Số điện thoại:</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="phone" name="Dienthoai" placeholder="Enter phone">
+                                @*@ViewData["Loi6"]*@
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="Ngaysinh">Ngày sinh:</label>
+                            <div class="col-sm-7">
+                                <input type="date" name="Ngaysinh">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-5 col-sm-7">
+                                <label class="custom-control custom-radio">
+                                    <input id="gender" name="checkbox" type="checkbox" class="custom-control-input">
+                                    <span class="custom-control-indicator">Tôi đồng ý</span>
+                                    <span class="custom-control-description"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-5 col-sm-7">
+                                <button type="submit" class="btn btn-default" style="width:30%; text-align:center;">ĐĂNG KÝ</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---------POP-UP REGISTER--------->
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿
+@model IEnumerable<ShoseStore.Models.SANPHAM>
+@{
+    
+    Layout = "";
+}
+
+<div id="owl-demo1" class="owl-carousel text-center">
+    @foreach (var sanpham in Model)
+    {
+        <div class="item">
+            <div onclick="location.href='/ShoseStore/Details/@sanpham.MASP';" class="product-grid">
+                <div class="product-pic">
+                    <img src="~/images/sanpham/@sanpham.ANHBIA" alt="@sanpham.TENSP" style="width:224px;height:150px" />
+                </div>
+                <div class="product-pic-info">
+                    <a href="@Url.Action("Details","ShoseStore",new {id=sanpham.MASP})">
+                        <h3><a href="#">@sanpham.TENSP</a></h3>
+                        <div class="product-pic-info-price-cart">
+                            <div class="product-pic-info-price">
+                                <span>@String.Format("{0:0,0}", sanpham.GIABAN) VNĐ</span>
+                            </div>
+                            <div class="product-pic-info-cart">
+                                <a class="p-btn" href="@Url.Action("Themgiohang","GioHang",new { @iMasp= sanpham.MASP,@strUrl=Request.Url.ToString()})">Buy now</a>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

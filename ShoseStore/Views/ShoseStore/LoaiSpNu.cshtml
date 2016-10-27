@@ -1,0 +1,12 @@
+﻿@model IEnumerable<ShoseStore.Models.LOAISP>
+
+@*<p class="lead"><h2>Shop Name</h2></p>*@
+ <div  class="list-group">
+   @foreach (var item in Model)
+   {
+           <a href="@Url.Action("SptheoLoai", "ShoseStore", new { id = item.MALOAI })" class="list-group-item loainu@(item.MALOAI)"> @*mỗi trang như này có thay đổi chút*@
+               @item.TENLOAI
+           </a>
+   }
+</div>
+

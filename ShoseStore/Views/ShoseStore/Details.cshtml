@@ -1,0 +1,86 @@
+﻿<style>
+
+    button.item_add:hover{
+        background-color: gray;
+        border:none;
+    }
+    .item_add a{
+        text-decoration:none;
+        color:green;
+    }
+  
+</style>
+
+
+
+@model ShoseStore.Models.SANPHAM
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutChiTietSP.cshtml";
+}
+
+<h2>Thông Tin Chi Tiết Sản Phẩm</h2>
+@*<div style="width:30%;float:left;border-left:dotted 1px;border-color:azure">
+        <img src="~/images/sanpham/@Model.ANHBIA" style="width:80%" />
+    </div>*@
+
+    <div class="col-md-12">
+        <div class="col-md-4 grid">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li data-thumb="images/si.jpg">
+                        <div class="thumb-image"> <img src="~/images/sanpham/@Model.ANHBIA" data-imagezoom="true" class="img-responsive"> </div>
+                    </li>
+                    @*<li data-thumb="images/si1.jpg">
+                        <div class="thumb-image"> <img src="images/si1.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                    </li>
+                    <li data-thumb="images/si2.jpg">
+                        <div class="thumb-image"> <img src="images/si2.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                    </li>*@
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8 thongtin" >
+            <div style="width:60%;float:left;padding:10px">
+                <h4 style="font-weight:bold;color:red">@Model.TENSP</h4>
+                <p style="text-align:justify"><span style="font-weight:bold">Mô tả:</span>@Model.MOTA</p>
+                <p style="text-align:justify"><span style="font-weight:bold">Size: </span>@Model.SIZE</p>
+                <p style="font-weight:bold">Giá bán:<span style="color:red;font-size:16pt">@String.Format("{0:0,0}",Model.GIABAN) VNĐ</span></p>
+            </div>
+            <div style="width:60%;float:left;padding:10px">
+                <form role="form" id="add-to-cart" action="/checkout/ajaxAdd">
+                    <!-- Only for js checking baby milk product -->
+
+                    <input type="hidden" name="product_type" value="simple">
+                    <div class="item-product-options">
+
+                        <div class="form-group">
+                            <label>Số lượng:</label>
+                            <input id="soluong" type="number" name="soluong" value="1" min="1" max="100" class="form-control" style="width: 75px" />
+                            <input id="product_id_for_wishlist" name="id" type="hidden" value="92969">
+                        </div>
+
+                        <div class="quantity-col2">
+
+                            <button class="item_add" type="button" data-original-title="">
+                                <span class="icon">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                </span>
+                                <a href="@Url.Action("Themgiohang","GioHang",new { @iMasp= @Model.MASP,@strUrl=Request.Url.ToString()})">
+                                    Thêm Vào Giỏ Hàng
+                                </a>
+                            </button>
+                            @*<a href="javascript:" class="add-to-wishlist  is-css">
+                                <span class="icon js-product-gift-icon" data-placement="bottom" data-toggle="tooltip" data-title="Thêm Vào Yêu Thích">
+                                    <i class="fa fa-heart"></i>
+                                </span>*@
+
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+       

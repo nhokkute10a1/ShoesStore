@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type='text/css' />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="~/Content/style.css" rel="stylesheet" type='text/css' />
+    <!-- Custom Theme files -->
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Glegoo:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+    <link href="~/Content/owl.carousel.css" rel="stylesheet" type='text/css' />
+    <script src="~/Scripts/responsiveslides.min.js"></script>
+    <script src="~/Scripts/owl.carousel.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <div>
+        <!--- top-nav -->
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
+                        @*<a href="../" class="navbar-brand">Bootswatch</a>*@
+                        <span class="sr-only">Danh muc san pham</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand visible-sm visible-xs" href="#">Danh mục sản phẩm</a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-main" aria-expanded="false">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#">Trang Chủ</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Dành Cho Nữ <span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                                @Html.Action("LoaiSpNu", "ShoseStore")                             
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Dành Cho Nam <span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="download">
+                                @Html.Action("LoaiSpNam", "ShoseStore")                           
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Thương Hiệu <span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="download">
+                                @Html.Action("Nhasanxuat", "ShoseStore")
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="../help/">Help</a>
+                        </li>
+                        <li>
+                            <a href="http://news.bootswatch.com">Liên Hệ</a>
+                        </li>
+
+                    </ul>
+
+                    @*<ul class="nav navbar-nav navbar-right">
+                        <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
+                        <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
+                    </ul>*@
+
+                </div>
+            </div>
+        </div>
+        <!--- top-nav -->
+        <!-- script-for-nav -->
+        <script>
+            $(document).ready(function () {
+                $("span.menu").click(function () {
+                    $(".top-nav ul").slideToggle(500);
+                });
+            });
+        </script>
+
+        <!-- /script-for-nav -->
+        <!-- banner -->
+        <div class="banner">
+            <div class="container">
+                <!--- img-slider --->
+                <div class="img-slider">
+                    <!----start-slider-script---->
+                    <script>
+                        // You can also use "$(window).load(function() {"
+                        $(function () {
+                            // Slideshow 4
+                            $("#slider4").responsiveSlides({
+                                auto: true,
+                                pager: true,
+                                nav: true,
+                                speed: 500,
+                                namespace: "callbacks",
+                                before: function () {
+                                    $('.events').append("<li>before event fired.</li>");
+                                },
+                                after: function () {
+                                    $('.events').append("<li>after event fired.</li>");
+                                }
+                            });
+
+                        });
+                    </script>
+                    <!----//End-slider-script---->
+                    <!-- Slideshow 4 -->
+                    <div id="top" class="callbacks_container">
+                        <ul class="rslides" id="slider4">
+                            <li>
+                                <img class="img-responsive samesize" src="~/images/slide1.jpg" alt="">
+                            </li>
+                            <li>
+                                <img class="img-responsive samesize" src="~/images/silide2.jpg" alt="">
+
+                            </li>
+                            <li>
+                                <img class="img-responsive samesize" src="~/images/silide3.jpg" alt="">
+
+                            </li>
+                            <li>
+                                <img class="img-responsive samesize" src="~/images/silide4.jpg" alt="">
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <!-- slider -->
+            </div>
+        </div>
+        <!-- banner -->
+        <!-- footer -->
+        <div class="footer">
+            <div class="container">
+                <div class="footer-grids">
+                    <div class="col-md-3 footer-grid">
+                        <h3>Information</h3>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="#">Return</a></li>
+                            <li><a href="#">Delivery Information</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 footer-grid">
+                        <h3>Extras</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="collections.html">Collections</a></li>
+                            <li><a href="404.html">New Arrivals</a></li>
+                            <li><a href="404.html">Sale</a></li>
+                            <li><a href="404.html">Accessories</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 footer-grid testmonial">
+                        <h3>Testimonials</h3>
+                        <div class="testmonial-grid">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                            <a href="#">John Smith,<span>Occupation</span></a>
+                        </div>
+                        <div class="clearfix"> </div>
+                        <div class="testmonial-grid">
+                            <p>In reprehenderit in voluptate velit esse cillum.</p>
+                            <a href="#">John Smith,<span>Occupation</span></a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 footer-grid about-grid">
+                        <h3>About Us</h3>
+                        <p>Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <!-- social-icons -->
+                <div class="social-icons text-center">
+                    <ul>
+                        <li><a href="#"><span class="facebook"> </span></a></li>
+                        <li><a href="#"><span class="twitter"> </span></a></li>
+                        <li><a href="#"><span class="gpluse"> </span></a></li>
+                        <li><a href="#"><span class="pin"> </span></a></li>
+                        <li><a href="#"><span class="ens"> </span></a></li>
+                        <li><a href="#"><span class="you"> </span></a></li>
+                    </ul>
+                </div>
+                <!-- social-icons -->
+                <!-- footer-bottom -->
+                <div class="footer-bottom">
+                    <div class="footer-bottom-left">
+                        <p>GAIA inc &#169; 2016</p>
+                    </div>
+                    <!--  <div class="footer-bottom-right">
+                       <ul>
+                           <li><span class="visa"> </span></li>
+                           <li><span class="master"> </span></li>
+                           <li><span class="paypla"> </span></li>
+                           <li><span class="ami"> </span></li>
+                       </ul>
+                   </div>
+                   <div class="clearfix"> </div> -->
+                    <!-- footer-bottom -->
+                </div>
+               
+            </div>
+        </div>
+        <!-- footer -->
+    </div>
+</body>
+</html>
