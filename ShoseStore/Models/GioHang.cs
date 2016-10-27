@@ -28,7 +28,7 @@ namespace ShoseStore.Models
             iTensp = sp.TENSP;
             iAnhbia = sp.ANHBIA;
             dDongia = double.Parse(sp.GIABAN.ToString());
-            iSize = sp.SIZE; 
+            iSize = sp.MASIZE;
             iSoluong = 1;
         }
     }

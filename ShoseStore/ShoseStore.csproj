@@ -188,6 +188,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ShoseStoreController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -289,11 +290,6 @@
     <Content Include="images\top-header-bg.png" />
     <Content Include="images\zoom.png" />
     <Content Include="fonts\scripti.ttf" />
-    <Content Include="Models\dbShoseStore.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>dbShoseStore.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\easyResponsiveTabs.js" />
@@ -311,6 +307,11 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Models\dbShoseStore.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>dbShoseStore.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -465,6 +466,18 @@
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\LoaiSP.cshtml" />
+    <Content Include="Views\Admin\CreateLoai.cshtml" />
+    <Content Include="Views\Admin\DeleteLoai.cshtml" />
+    <Content Include="Views\Admin\EditLoai.cshtml" />
+    <Content Include="Views\Admin\DonDatHang.cshtml" />
+    <Content Include="Views\Admin\DetailsDDH.cshtml" />
+    <Content Include="Views\Admin\EditDDH.cshtml" />
+    <Content Include="Views\Admin\CTDDH.cshtml" />
+    <Content Include="Views\Admin\DetailsCTDDH.cshtml" />
+    <Content Include="Views\Admin\KhachHang.cshtml" />
+    <Content Include="Views\Admin\DetailsKH.cshtml" />
+    <Content Include="Views\TimKiem\KQTimKiem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -481,12 +494,12 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <Analyzer Include="bin\System.Runtime.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Models\dbShoseStore.dbml.layout">
       <DependentUpon>dbShoseStore.dbml</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="bin\System.Runtime.dll" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

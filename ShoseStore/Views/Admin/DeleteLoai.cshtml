@@ -1,0 +1,40 @@
+﻿@model ShoseStore.Models.LOAISP
+
+@{
+    ViewBag.Title = "DeleteLoai";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>XÓA LOẠI SẢN PHẨM</h2>
+
+<h3>Bạn có thật sự muốn xóa nó không?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên loại:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENLOAI)
+        </dd>
+
+        <dt>
+            Giới tính:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIOITINH)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="XÓA" class="btn btn-default" /> |
+            @Html.ActionLink("Quay trở về trang trước", "LoaiSP")
+        </div>
+    }
+</div>

@@ -1,0 +1,75 @@
+﻿@model ShoseStore.Models.DONDATHANG
+
+@{
+    ViewBag.Title = "EditDDH";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>ĐIỀU CHỈNH THÔNG TIN ĐƠN ĐẶT HÀNG</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MADDH)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MADDH, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               <div style="font:18px;padding:5px 0 0 5px">@Model.MADDH</div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NGAYDH, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div style="font:18px;padding:5px 0 0 5px">@Model.NGAYDH</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NGAYGIAO, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div style="font:18px;padding:5px 0 0 5px">@Model.NGAYGIAO</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DATHANHTOAN,new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DATHANHTOAN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DATHANHTOAN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TINHTRANGGIAO, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TINHTRANGGIAO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TINHTRANGGIAO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MAKH, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div style="font:18px;padding:5px 0 0 5px">@Model.KHACHHANG.HOTEN</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Quay trở về trang trước", "DonDatHang")
+</div>

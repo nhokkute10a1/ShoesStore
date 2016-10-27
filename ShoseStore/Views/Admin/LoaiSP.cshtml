@@ -1,0 +1,52 @@
+﻿
+@using ShoseStore.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList < ShoseStore.Models.LOAISP>
+
+@{
+    ViewBag.Title = "LoaiSP";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>LOẠI SẢN PHẨM</h2>
+
+<p>
+    @Html.ActionLink("THÊM MỚI", "CreateLoai")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên loại
+        </th>
+        <th>
+            Giới tính
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENLOAI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GIOITINH)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "EditLoai", new { id=item.MALOAI }) |
+            @Html.ActionLink("Xóa", "DeleteLoai", new { id=item.MALOAI })
+        </td>
+    </tr>
+}
+
+</table>
+@*tao lien ket trang*@
+   Trang@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount;
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("LoaiSP", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

@@ -1,0 +1,51 @@
+﻿@using ShoseStore.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<ShoseStore.Models.SANPHAM>
+
+@{
+    ViewBag.Title = "KQTimKiem";
+    Layout = "~/Views/Shared/_Product.cshtml";
+}
+
+<h2>KẾT QUẢ TÌM KIẾM</h2>
+<div>@ViewBag.Thongbao</div>
+<hr/>
+<div class="row">
+    @foreach (var sanpham in Model)
+    {
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <a href="@Url.Action("Details", "ShoseStore", new { id = sanpham.MASP })">
+                    <img alt="@sanpham.TENSP" src="~/images/sanpham/@sanpham.ANHBIA" width="100" />
+                </a>
+                <div>
+                    <br />
+                    <h4 style="text-align:center ">
+                        @sanpham.TENSP
+                    </h4>
+                    <div class="product-pic-info-price-cart">
+                        <div class="product-pic-info-price">
+                            <span>@String.Format("{0:0,0}", sanpham.GIABAN) VNĐ</span>
+                        </div>
+                        <div class="product-pic-info-cart">
+                            <a class="p-btn" href="@Url.Action("Themgiohang","GioHang",new { @iMasp= sanpham.MASP,@strUrl=Request.Url.ToString()})">Buy now</a>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <p></p>
+                </div>              
+            </div>
+        </div>
+    }
+</div>
+
+@*tao lien ket trang*@
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("KQTimKiem", new { page = page, @Stukhoa = ViewBag.Tukhoa }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

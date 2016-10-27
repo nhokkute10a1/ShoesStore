@@ -1,0 +1,66 @@
+﻿@using ShoseStore.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<ShoseStore.Models.DONDATHANG>
+
+@{
+    ViewBag.Title = "DonDatHang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>THÔNG TIN ĐƠN ĐẶT HÀNG</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Ngày đặt hàng:
+        </th>
+        <th>
+            Ngày giao:
+        </th>
+        <th>
+            Đã thanh toán:
+        </th>
+        <th>
+            Tình trạng giao:
+        </th>
+        <th>
+            Tên Khách Hàng:
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NGAYDH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NGAYGIAO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATHANHTOAN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TINHTRANGGIAO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KHACHHANG.HOTEN)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "EditDDH", new { id=item.MADDH }) |
+            @Html.ActionLink("Chi tiết", "DetailsDDH", new { id=item.MADDH })
+        </td>
+    </tr>
+}
+
+</table>
+@*tao lien ket trang*@
+   Trang@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount;
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("DonDatHang", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

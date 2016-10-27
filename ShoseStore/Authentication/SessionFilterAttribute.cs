@@ -23,7 +23,6 @@ namespace ShoseStore.Authentication
          * ActionExecutingContext: là cái bối cảnh của cái action method đang được thực thi
          * nếu là index thì là bối cảnh của index, nếu là create thì là của create
          * HttpContext: là cái bối cảnh chung cho tất cả
-         * ok chứ?
          */
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

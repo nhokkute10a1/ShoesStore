@@ -1,5 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLBANGIAYDEP" Class="dbShoseStoreDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=HIIMFOX-PC\SQLSERVER;Initial Catalog=QLBANGIAYDEP;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLBANGIAYDEPConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.LOAISP" Member="LOAISPs">
+    <Type Name="LOAISP">
+      <Column Name="MALOAI" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENLOAI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GIOITINH" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="LOAISP_SANPHAM" Member="SANPHAMs" ThisKey="MALOAI" OtherKey="MALOAI" Type="SANPHAM" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Admin" Member="Admins">
+    <Type Name="Admin">
+      <Column Name="UserAdmin" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PassAdmin" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.CTHOADON" Member="CTHOADONs">
     <Type Name="CTHOADON">
       <Column Name="MADDH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -36,14 +51,6 @@
       <Association Name="KHACHHANG_DONDATHANG" Member="DONDATHANGs" ThisKey="MAKH" OtherKey="MAKH" Type="DONDATHANG" />
     </Type>
   </Table>
-  <Table Name="dbo.LOAISP" Member="LOAISPs">
-    <Type Name="LOAISP">
-      <Column Name="MALOAI" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TENLOAI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="GIOITINH" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="LOAISP_SANPHAM" Member="SANPHAMs" ThisKey="MALOAI" OtherKey="MALOAI" Type="SANPHAM" />
-    </Type>
-  </Table>
   <Table Name="dbo.NHASANXUAT" Member="NHASANXUATs">
     <Type Name="NHASANXUAT">
       <Column Name="MANSX" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -59,7 +66,7 @@
       <Column Name="MALOAI" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="MANSX" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TENSP" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="SIZE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MASIZE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="GIABAN" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
       <Column Name="MOTA" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="ANHBIA" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
@@ -70,13 +77,14 @@
       <Association Name="SANPHAM_CTHOADON" Member="CTHOADONs" ThisKey="MASP" OtherKey="MASP" Type="CTHOADON" />
       <Association Name="LOAISP_SANPHAM" Member="LOAISP" ThisKey="MALOAI" OtherKey="MALOAI" Type="LOAISP" IsForeignKey="true" />
       <Association Name="NHASANXUAT_SANPHAM" Member="NHASANXUAT" ThisKey="MANSX" OtherKey="MANSX" Type="NHASANXUAT" IsForeignKey="true" />
+      <Association Name="SIZE_SANPHAM" Member="SIZE" ThisKey="MALOAI" OtherKey="MASIZE" Type="SIZE" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Admin" Member="Admins">
-    <Type Name="Admin">
-      <Column Name="UserAdmin" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PassAdmin" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="Hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+  <Table Name="dbo.SIZE" Member="SIZEs">
+    <Type Name="SIZE">
+      <Column Name="MASIZE" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SIZE" Member="SIZE1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="SIZE_SANPHAM" Member="SANPHAMs" ThisKey="MASIZE" OtherKey="MALOAI" Type="SANPHAM" />
     </Type>
   </Table>
 </Database>
