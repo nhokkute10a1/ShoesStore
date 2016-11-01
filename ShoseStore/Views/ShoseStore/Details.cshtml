@@ -1,86 +1,190 @@
 ﻿<style>
-
-    button.item_add:hover{
+    button.item_add:hover {
         background-color: gray;
-        border:none;
+        border: none;
     }
-    .item_add a{
-        text-decoration:none;
-        color:green;
+
+    .item_add a {
+        text-decoration: none;
+        color: green;
     }
-  
 </style>
 
 
 
-@model ShoseStore.Models.SANPHAM
+@model  dynamic
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutChiTietSP.cshtml";
 }
 
 <h2>Thông Tin Chi Tiết Sản Phẩm</h2>
-@*<div style="width:30%;float:left;border-left:dotted 1px;border-color:azure">
-        <img src="~/images/sanpham/@Model.ANHBIA" style="width:80%" />
-    </div>*@
-
-    <div class="col-md-12">
-        <div class="col-md-4 grid">
-            <div class="flexslider">
-                <ul class="slides">
-                    <li data-thumb="images/si.jpg">
-                        <div class="thumb-image"> <img src="~/images/sanpham/@Model.ANHBIA" data-imagezoom="true" class="img-responsive"> </div>
-                    </li>
-                    @*<li data-thumb="images/si1.jpg">
+@*chi tiết sản phẩm*@
+<div class="col-md-12">
+    <div class="col-md-4 grid">
+        <div class="flexslider">
+            <ul class="slides">
+                <li data-thumb="images/si.jpg">
+                    <div class="thumb-image"> <img src="~/images/sanpham/@Model.sp.ANHBIA" data-imagezoom="true" class="img-responsive"> </div>
+                </li>
+                @*<li data-thumb="images/si1.jpg">
                         <div class="thumb-image"> <img src="images/si1.jpg" data-imagezoom="true" class="img-responsive"> </div>
                     </li>
                     <li data-thumb="images/si2.jpg">
                         <div class="thumb-image"> <img src="images/si2.jpg" data-imagezoom="true" class="img-responsive"> </div>
                     </li>*@
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-8 thongtin" >
-            <div style="width:60%;float:left;padding:10px">
-                <h4 style="font-weight:bold;color:red">@Model.TENSP</h4>
-                <p style="text-align:justify"><span style="font-weight:bold">Mô tả:</span>@Model.MOTA</p>
-                <p style="text-align:justify"><span style="font-weight:bold">Size: </span>@Model.MASIZE</p>
-                <p style="font-weight:bold">Giá bán:<span style="color:red;font-size:16pt">@String.Format("{0:0,0}",Model.GIABAN) VNĐ</span></p>
-            </div>
-            <div style="width:60%;float:left;padding:10px">
-                <form role="form" id="add-to-cart" action="/checkout/ajaxAdd">
-                    <!-- Only for js checking baby milk product -->
-
-                    <input type="hidden" name="product_type" value="simple">
-                    <div class="item-product-options">
-
-                        <div class="form-group">
-                            <label>Số lượng:</label>
-                            <input id="soluong" type="number" name="soluong" value="1" min="1" max="100" class="form-control" style="width: 75px" />
-                            <input id="product_id_for_wishlist" name="id" type="hidden" value="92969">
-                        </div>
-
-                        <div class="quantity-col2">
-
-                            <button class="item_add" type="button" data-original-title="">
-                                <span class="icon">
-                                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                                </span>
-                                <a href="@Url.Action("Themgiohang","GioHang",new { @iMasp= @Model.MASP,@strUrl=Request.Url.ToString()})">
-                                    Thêm Vào Giỏ Hàng
-                                </a>
-                            </button>
-                            @*<a href="javascript:" class="add-to-wishlist  is-css">
-                                <span class="icon js-product-gift-icon" data-placement="bottom" data-toggle="tooltip" data-title="Thêm Vào Yêu Thích">
-                                    <i class="fa fa-heart"></i>
-                                </span>*@
-
-                            </a>
-                        </div>
-                    </div>
-                </form>
-            </div>
+            </ul>
         </div>
     </div>
+    <div class="col-md-8 thongtin">
+        <div style="width:60%;float:left;padding:10px">
+            <h4 style="font-weight:bold;color:red">@Model.sp.TENSP</h4>
+            <p style="text-align:justify"><span style="font-weight:bold">Mô tả:</span>@Model.sp.MOTA</p>
+            <p style="text-align:justify"><span style="font-weight:bold">Chọn Size: </span></p>
+            <div class="Select_box_size">
+                @*<div id="hide">
+                        @foreach (var item in Model.size)
+                        {
 
-       
+                            <div id="@item.SIZE1" class="Border_size">
+                                <span>@item.SIZE1 </span>
+                            </div>
+                        }
+                    </div>*@
+                <div id="show" style="display:block" class="Select_box_size">
+                    @Html.Action("Sizetheosp", new { id = Model.sp.MASP })
+                </div>
+            </div>
+
+
+
+
+
+            <p style="font-weight:bold">Giá bán:<label style="color:red;font-size:16pt">@String.Format("{0:0,0}", Model.sp.GIABAN) VNĐ</label></p>
+        </div>
+        <div style="width:60%;float:left;padding:10px">
+            <form role="form" id="add-to-cart" action="/checkout/ajaxAdd">
+                <!-- Only for js checking baby milk product -->
+
+                <input type="hidden" name="product_type" value="simple">
+                <div class="item-product-options">
+
+                    <div class="form-group">
+                        
+                        <label>Số lượng:</label>
+                        <input id="soluong" type="number" name="soluong" value="1" min="1" max="100" class="form-control" style="width: 75px" />
+                        <input id="product_id_for_wishlist" name="id" type="hidden" value="92969">
+                    </div>
+
+                    <div class="quantity-col2">
+
+                        <button class="item_add" type="button" data-original-title="" style="margin-bottom:150px">
+                            <span class="icon">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                            </span>
+                            <a id="myLink">
+                                Thêm Giỏ Hàng
+                            </a>
+                        </button>
+                        @*<a href="javascript:" class="add-to-wishlist  is-css">
+                            <span class="icon js-product-gift-icon" data-placement="bottom" data-toggle="tooltip" data-title="Thêm Vào Yêu Thích">
+                                <i class="fa fa-heart"></i>
+                            </span>*@
+
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@*sản phẩm liên quan*@
+<h3 style="text-align:center;color:green">SẢN PHẨM LIÊN QUAN</h3>
+<hr />
+@foreach(var item in Model.SPLienQuan)
+{
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <a href="@Url.Action("Details", "ShoseStore", new { id = item.MASP })">
+                    <img alt="@item.TENSP" src="~/images/sanpham/@item.ANHBIA" width="100" />
+                </a>
+                <div>
+                    <br />
+                    <h4 style="text-align:center ">
+                        @item.TENSP
+                    </h4>
+                    <div class="product-pic-info-price-cart">
+                        <div class="product-pic-info-price">
+                            <span>@String.Format("{0:0,0}", item.GIABAN) VNĐ</span>
+                        </div>
+                        <div class="product-pic-info-cart">
+                            <a class="btn btn-danger" href="/ShoseStore/Details/@item.MASP">Thêm giỏ hàng</a>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <p></p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">15 reviews</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    }
+@*scrip cua them size vao gio hang*@
+<script type="text/javascript">
+    document.getElementById('myLink').style.pointerEvents = 'none';
+    var size = null;
+    var number = 0;
+    var link = '@Html.Raw(@Url.Action("ThemGiohang", "GioHang", new {@iMaSP = @Model.sp.MASP, @iSize="I-s",@Soluong="I-N", @strUrl = Request.Url.ToString() }))';
+    //nut chon size
+    $('.Border_size').on('click', function () {
+        var $this = $(this);
+
+        $('.Border_size').removeClass("active3");
+        $this.addClass("active3");
+        //
+        size = $(this).find('#Size').text();
+        SLton = $(this).find('#Slton').text();
+        if (SLton > 0) {
+
+            document.getElementById('myLink').style.pointerEvents = 'inherit';
+        }
+        else {
+
+            document.getElementById('myLink').style.pointerEvents = 'none';
+
+        }
+
+
+
+    });
+    //nut mua hang
+    $('#myLink').on('click', function () {
+
+        number = $("#soluong").val();
+        //number = 2;
+        if (number.length === 0 || parseInt(number) == 0) {
+            alert(' Số lượng  Mua Phải Lớn Hơn 0');
+
+        }
+        else {
+            if (parseInt(number) > SLton) {
+                alert('Số lượng mua vượt quá hàng tồn kho');
+            }
+            else {
+                window.location = link.replace("I-s", size).replace("I-N", number);
+               
+            }
+        }
+
+    });
+</script>

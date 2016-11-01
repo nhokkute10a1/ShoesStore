@@ -1,4 +1,4 @@
-﻿@model ShoseStore.Models.DONDATHANG
+﻿@model dynamic
 
 @{
     ViewBag.Title = "DetailsDDH";
@@ -11,11 +11,17 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            Mã đơn hàng:
+        </dt>
+        <dd>
+            @Model.DDH.MADDH
+        </dd>
+        <dt>
             Ngày đặt hàng:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NGAYDH)
+            @String.Format("{0:dd/MM/yyyy}", @Model.DDH.NGAYDH)
         </dd>
 
         <dt>
@@ -23,7 +29,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NGAYGIAO)
+            @String.Format("{0:dd/MM/yyyy}", @Model.DDH.NGAYGIAO)
         </dd>
 
         <dt>
@@ -31,7 +37,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DATHANHTOAN)
+            @Model.DDH.DATHANHTOAN
         </dd>
 
         <dt>
@@ -39,7 +45,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TINHTRANGGIAO)
+            @Model.DDH.TINHTRANGGIAO
         </dd>
 
         <dt>
@@ -47,12 +53,67 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.KHACHHANG.HOTEN)
+            @Model.DDH.KHACHHANG.HOTEN
         </dd>
 
     </dl>
 </div>
+<hr />
+<div class="box-header">
+    <h3 class="box-title">Chi Tiết Đơn Hàng</h3>
+</div>
+<div class="box-body">
+
+    <table class="table" border="1">
+        <tr>
+            <th>
+                Mã DDH
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Size
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Đơn giá
+            </th>
+            <th> Thành tiền </th>
+        </tr>
+
+        @foreach (var item in Model.ChiTietDDH)
+        {
+            <tr>
+
+                <td>
+                    @item.MASP
+                </td>
+                <td>
+                    @item.SANPHAM.TENSP
+                </td>
+                <td>
+                    @item.SIZE
+                </td>
+                <td>
+                    @item.SOLUONG
+                </td>
+                <td>
+                    @String.Format("{0:0,0}", @item.DONGIA) VNĐ
+
+                </td>
+                <td>
+                    @String.Format("{0:0,0}", @item.THANHTIEN) VNĐ
+                </td>
+            
+            </tr>
+        }
+    </table>
+</div>
+<hr />
 <p>
-    @Html.ActionLink("Sửa", "EditDDH", new { id = Model.MADDH }) |
+    @Html.ActionLink("Sửa", "EditDDH", new { id = Model.DDH.MADDH }) |
     @Html.ActionLink("Quay trở về trang trước", "DonDatHang")
 </p>

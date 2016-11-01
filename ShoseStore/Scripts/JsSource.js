@@ -76,7 +76,6 @@ function checkTonTaiVaHien(nameLoai, id) {
 
 // xu ly doan loi trong khi dk va dang nhap
 $(document).ready(function () {
-
     console.log(window.location.pathname.split('/')[3])
     if (sessionStorage.loaiCuaLoai) {
         var id = window.location.pathname.split('/')[3];

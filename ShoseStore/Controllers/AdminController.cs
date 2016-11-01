@@ -15,7 +15,7 @@ namespace ShoseStore.Controllers
     {
         // GET: Admin
         dbShoseStoreDataContext db = new dbShoseStoreDataContext();
-        [SessionFilter]
+       [SessionFilter]
         public ActionResult Index()
         {
             return View();
@@ -146,7 +146,7 @@ namespace ShoseStore.Controllers
 
         }
 
-        //Hien thi  san pham
+        //Hien thi chi tiet  san pham
         [SessionFilter]
         public ActionResult Details(int id)
         {
@@ -246,23 +246,32 @@ namespace ShoseStore.Controllers
         [HttpPost]
         public ActionResult EditLoai(LOAISP loai)
         {
-            
             if (ModelState.IsValid)
             {
                 // can phai lay sach tu csdl ra
-                var thisLoai = db.LOAISPs.Any((l => l.TENLOAI.Equals(loai.TENLOAI)));
-                if (thisLoai)
-                {
-                    ViewBag.Thongbao = "Tên loại đã tồn tại";
-                    return View(loai);
-                }
-
+                var thisloai = db.LOAISPs.Single(n => n.MALOAI == loai.MALOAI);
                 //rui moi luu vao csdl
                 // ly do vi sao thi ko pit
-                UpdateModel(loai);
+                UpdateModel(thisloai);
                 db.SubmitChanges();
             }
-            return RedirectToAction("LoaiSP",new { page = 1 });
+            return RedirectToAction("LoaiSP");
+            //if (ModelState.IsValid)
+            //{
+            //    // can phai lay sach tu csdl ra
+            //    var thisLoai = db.LOAISPs.Any((l => l.TENLOAI.Equals(loai.TENLOAI)));
+            //    if (thisLoai)
+            //    {
+            //        ViewBag.Thongbao = "Tên loại đã tồn tại";
+            //        return View(loai);
+            //    }
+
+            //    //rui moi luu vao csdl
+            //    // ly do vi sao thi ko pit
+            //    UpdateModel(loai);
+            //    db.SubmitChanges();
+            //}
+            //return RedirectToAction("LoaiSP",new { page = 1 });
 
         }
 
@@ -345,45 +354,39 @@ namespace ShoseStore.Controllers
         [SessionFilter]
         public ActionResult DetailsDDH(int id)
         {
+            dynamic model = new System.Dynamic.ExpandoObject();
+            //model.DDH = db.DONDATHANGs.SingleOrDefault(n => n.MADDH == id);
+            // ViewBag.MaSP = sanpham.MASP;
+            //if (model.DDH == null)
+            //{
+            //    Response.StatusCode = 404;
+            //    return null;
+            //}
+            //model.ChiTietDDH = from a in db.CTDDHs
+            //                   where a.MADDH == id
+            //                   orderby a.ID
+            //                   select a;
+            //return View(model);
             // lay ra doi tuong sach theo ma
-            DONDATHANG ddh = db.DONDATHANGs.SingleOrDefault(n => n.MADDH == id);
-            if (ddh == null)
+            model.DDH = db.DONDATHANGs.SingleOrDefault(n => n.MADDH == id);
+            if (model.DDH == null)
             {
                 Response.StatusCode = 404;
                 return null;
             }
-            ViewBag.MADDH = ddh.MADDH;
-            return View(ddh);
+            model.ChiTietDDH = from a in db.CTHOADONs
+                               where a.MADDH == id
+                               orderby a.MADDH
+                               select a;
+            return View(model);
         }
 
-        /// <summary>
-        /// Quản lý chi tiết đơn đặt hàng
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult CTDDH(int ? page)
-        {
-            int pageNumber = (page ?? 1);
-            int pageSize = 7;
-            return View(db.CTHOADONs.ToList().OrderBy(n => n.MADDH).ToPagedList(pageNumber, pageSize));
-        }
-        //chi tiet - coi lại phần này lỗi
-        public ActionResult DetailsCTDDH(int id)
-        {
-            // lay ra doi tuong sach theo ma
-            CTHOADON cthd = db.CTHOADONs.SingleOrDefault(n => n.MADDH == id);
-            if (cthd == null)
-            {
-                Response.StatusCode = 404;
-                return null;
-            }
-            ViewBag.MADDH = cthd.MADDH;
-            return View(cthd);
-        }
         /// <summary>
         /// Quản lý khách hàng
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
+        [SessionFilter]
         public ActionResult KhachHang(int ? page )
         {
             int pageNumber = (page ?? 1);
@@ -391,6 +394,7 @@ namespace ShoseStore.Controllers
             return View(db.KHACHHANGs.ToList().OrderBy(n => n.MAKH).ToPagedList(pageNumber, pageSize));
         }
         //chi tiết kh
+        [SessionFilter]
         public ActionResult DetailsKH(int id)
         {
             // lay ra doi tuong sach theo ma
@@ -402,6 +406,121 @@ namespace ShoseStore.Controllers
                 return null;
             }
             return View(kh);
+        }
+        /// <summary>
+        /// Quản lý Size
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        [SessionFilter]
+        public ActionResult QLSize(int ? page)
+        {
+            int pageNumber = (page ?? 1);
+            int pageSize = 7;
+            return View(db.SIZEs.ToList().OrderBy(n => n.MASIZE).ToPagedList(pageNumber, pageSize));
+
+        }
+        //thêm mới
+        [SessionFilter]
+        [HttpGet]
+        public ActionResult CreateSize()
+        {
+            ViewBag.MaSP = new SelectList(db.SANPHAMs.ToList().OrderBy(n => n.TENSP), "MASP", "TENSP");
+            //ViewBag.MaSize = new SelectList(db.SIZEs.ToList().OrderBy(n => n.SIZE1), "MASIZE", "SIZE1");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateSize(SIZE size)
+        {
+            //dua du lieu vao 
+            ViewBag.MaSP = new SelectList(db.SANPHAMs.ToList().OrderBy(n => n.TENSP), "MASP", "TENSP");
+                if (ModelState.IsValid)
+                {
+                    db.SIZEs.InsertOnSubmit(size);
+                    db.SubmitChanges();
+                }
+                return RedirectToAction("QLSize");         
+        }
+        //sửa
+        [SessionFilter]
+        [HttpGet]
+        public ActionResult EditSize(int id,int? isRedirect)
+        {
+            // lay ra doi tuong sach theo ma
+            SIZE size = db.SIZEs.SingleOrDefault(n => n.MASIZE == id);
+            SANPHAM sp = size.SANPHAM;
+            ViewBag.TenSP = sp.TENSP;
+            ViewBag.MaSP = sp.MASP;
+            if (size == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+
+            if (isRedirect.HasValue)
+            {
+                ViewBag.Thongbao = "Size đã tồn tại";
+            }
+            
+            return View(size);
+        }
+
+        [HttpPost]
+        public ActionResult EditSize(SIZE size, int masp)
+        {
+            
+            
+            if (ModelState.IsValid)
+            {
+                
+                
+                // can phai lay sach tu csdl ra
+                var sizeTonTai = db.SIZEs.Where(s => s.MASP == masp).Any(s => s.SIZE1 == size.SIZE1);
+                if (sizeTonTai)
+                {
+                    return this.EditSize(size.MASIZE,1);
+                }
+
+                var thisSize = db.SIZEs.SingleOrDefault(s => s.MASIZE == size.MASIZE);
+
+                thisSize.SIZE1 = size.SIZE1;
+
+                //rui moi luu vao csdl
+                // ly do vi sao thi ko pit
+                UpdateModel(thisSize);
+                db.SubmitChanges();
+            }
+            return RedirectToAction("QLSize", new { page = 1 });
+
+        }
+        //xóa
+        [SessionFilter]
+        [HttpGet]
+        public ActionResult DeleteSize(int id)
+        {
+            SIZE size = db.SIZEs.SingleOrDefault(m => m.MASIZE == id);
+            ViewBag.MASIZE = size.MASIZE;
+            if (size == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(size);
+        }
+
+        [HttpPost, ActionName("DeleteSize")]
+        public ActionResult Xacnhanxoasize(int id)
+        {
+            SIZE size = db.SIZEs.SingleOrDefault(m => m.MASIZE == id);
+            ViewBag.MASIZE = size.MASIZE;
+            if (size == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            db.SIZEs.DeleteOnSubmit(size);
+            db.SubmitChanges();
+            return RedirectToAction("QLSize");
         }
 
         /// <summary>

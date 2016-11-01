@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ShoseStore.Models.SIZE>
+
+@{
+    int i = 0;
+}
+@foreach (var item in Model)
+{
+    <div class="Border_size" id="@i">
+        <span class="yith_wccl_tooltip top fade">
+
+            @if (item.SANPHAM.SOLUONGTON > 0)
+            {
+                <span>Số lượng còn:</span>
+
+                <span id="Slton">@item.SANPHAM.SOLUONGTON</span>
+                   
+            }
+            else
+            {
+                <span> Hết Hàng</span>
+            }
+        </span>
+        <span id="Size">@item.SIZE1 </span>
+
+    </div>
+
+    i++;
+}

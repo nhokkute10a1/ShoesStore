@@ -30,9 +30,6 @@ namespace ShoseStore.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertLOAISP(LOAISP instance);
-    partial void UpdateLOAISP(LOAISP instance);
-    partial void DeleteLOAISP(LOAISP instance);
     partial void InsertAdmin(Admin instance);
     partial void UpdateAdmin(Admin instance);
     partial void DeleteAdmin(Admin instance);
@@ -45,6 +42,9 @@ namespace ShoseStore.Models
     partial void InsertKHACHHANG(KHACHHANG instance);
     partial void UpdateKHACHHANG(KHACHHANG instance);
     partial void DeleteKHACHHANG(KHACHHANG instance);
+    partial void InsertLOAISP(LOAISP instance);
+    partial void UpdateLOAISP(LOAISP instance);
+    partial void DeleteLOAISP(LOAISP instance);
     partial void InsertNHASANXUAT(NHASANXUAT instance);
     partial void UpdateNHASANXUAT(NHASANXUAT instance);
     partial void DeleteNHASANXUAT(NHASANXUAT instance);
@@ -86,14 +86,6 @@ namespace ShoseStore.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<LOAISP> LOAISPs
-		{
-			get
-			{
-				return this.GetTable<LOAISP>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Admin> Admins
 		{
 			get
@@ -126,6 +118,14 @@ namespace ShoseStore.Models
 			}
 		}
 		
+		public System.Data.Linq.Table<LOAISP> LOAISPs
+		{
+			get
+			{
+				return this.GetTable<LOAISP>();
+			}
+		}
+		
 		public System.Data.Linq.Table<NHASANXUAT> NHASANXUATs
 		{
 			get
@@ -148,144 +148,6 @@ namespace ShoseStore.Models
 			{
 				return this.GetTable<SIZE>();
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LOAISP")]
-	public partial class LOAISP : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MALOAI;
-		
-		private string _TENLOAI;
-		
-		private System.Nullable<bool> _GIOITINH;
-		
-		private EntitySet<SANPHAM> _SANPHAMs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMALOAIChanging(int value);
-    partial void OnMALOAIChanged();
-    partial void OnTENLOAIChanging(string value);
-    partial void OnTENLOAIChanged();
-    partial void OnGIOITINHChanging(System.Nullable<bool> value);
-    partial void OnGIOITINHChanged();
-    #endregion
-		
-		public LOAISP()
-		{
-			this._SANPHAMs = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs), new Action<SANPHAM>(this.detach_SANPHAMs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MALOAI", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MALOAI
-		{
-			get
-			{
-				return this._MALOAI;
-			}
-			set
-			{
-				if ((this._MALOAI != value))
-				{
-					this.OnMALOAIChanging(value);
-					this.SendPropertyChanging();
-					this._MALOAI = value;
-					this.SendPropertyChanged("MALOAI");
-					this.OnMALOAIChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENLOAI", DbType="NVarChar(50)")]
-		public string TENLOAI
-		{
-			get
-			{
-				return this._TENLOAI;
-			}
-			set
-			{
-				if ((this._TENLOAI != value))
-				{
-					this.OnTENLOAIChanging(value);
-					this.SendPropertyChanging();
-					this._TENLOAI = value;
-					this.SendPropertyChanged("TENLOAI");
-					this.OnTENLOAIChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GIOITINH", DbType="Bit")]
-		public System.Nullable<bool> GIOITINH
-		{
-			get
-			{
-				return this._GIOITINH;
-			}
-			set
-			{
-				if ((this._GIOITINH != value))
-				{
-					this.OnGIOITINHChanging(value);
-					this.SendPropertyChanging();
-					this._GIOITINH = value;
-					this.SendPropertyChanged("GIOITINH");
-					this.OnGIOITINHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAISP_SANPHAM", Storage="_SANPHAMs", ThisKey="MALOAI", OtherKey="MALOAI")]
-		public EntitySet<SANPHAM> SANPHAMs
-		{
-			get
-			{
-				return this._SANPHAMs;
-			}
-			set
-			{
-				this._SANPHAMs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_SANPHAMs(SANPHAM entity)
-		{
-			this.SendPropertyChanging();
-			entity.LOAISP = this;
-		}
-		
-		private void detach_SANPHAMs(SANPHAM entity)
-		{
-			this.SendPropertyChanging();
-			entity.LOAISP = null;
 		}
 	}
 	
@@ -415,6 +277,8 @@ namespace ShoseStore.Models
 		
 		private System.Nullable<decimal> _DONGIA;
 		
+		private System.Nullable<decimal> _THANHTIEN;
+		
 		private EntityRef<DONDATHANG> _DONDATHANG;
 		
 		private EntityRef<SANPHAM> _SANPHAM;
@@ -433,6 +297,8 @@ namespace ShoseStore.Models
     partial void OnSOLUONGChanged();
     partial void OnDONGIAChanging(System.Nullable<decimal> value);
     partial void OnDONGIAChanged();
+    partial void OnTHANHTIENChanging(System.Nullable<decimal> value);
+    partial void OnTHANHTIENChanged();
     #endregion
 		
 		public CTHOADON()
@@ -546,6 +412,26 @@ namespace ShoseStore.Models
 					this._DONGIA = value;
 					this.SendPropertyChanged("DONGIA");
 					this.OnDONGIAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_THANHTIEN", DbType="Decimal(18,3)")]
+		public System.Nullable<decimal> THANHTIEN
+		{
+			get
+			{
+				return this._THANHTIEN;
+			}
+			set
+			{
+				if ((this._THANHTIEN != value))
+				{
+					this.OnTHANHTIENChanging(value);
+					this.SendPropertyChanging();
+					this._THANHTIEN = value;
+					this.SendPropertyChanged("THANHTIEN");
+					this.OnTHANHTIENChanged();
 				}
 			}
 		}
@@ -1148,6 +1034,144 @@ namespace ShoseStore.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LOAISP")]
+	public partial class LOAISP : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MALOAI;
+		
+		private string _TENLOAI;
+		
+		private System.Nullable<bool> _GIOITINH;
+		
+		private EntitySet<SANPHAM> _SANPHAMs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMALOAIChanging(int value);
+    partial void OnMALOAIChanged();
+    partial void OnTENLOAIChanging(string value);
+    partial void OnTENLOAIChanged();
+    partial void OnGIOITINHChanging(System.Nullable<bool> value);
+    partial void OnGIOITINHChanged();
+    #endregion
+		
+		public LOAISP()
+		{
+			this._SANPHAMs = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs), new Action<SANPHAM>(this.detach_SANPHAMs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MALOAI", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MALOAI
+		{
+			get
+			{
+				return this._MALOAI;
+			}
+			set
+			{
+				if ((this._MALOAI != value))
+				{
+					this.OnMALOAIChanging(value);
+					this.SendPropertyChanging();
+					this._MALOAI = value;
+					this.SendPropertyChanged("MALOAI");
+					this.OnMALOAIChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENLOAI", DbType="NVarChar(50)")]
+		public string TENLOAI
+		{
+			get
+			{
+				return this._TENLOAI;
+			}
+			set
+			{
+				if ((this._TENLOAI != value))
+				{
+					this.OnTENLOAIChanging(value);
+					this.SendPropertyChanging();
+					this._TENLOAI = value;
+					this.SendPropertyChanged("TENLOAI");
+					this.OnTENLOAIChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GIOITINH", DbType="Bit")]
+		public System.Nullable<bool> GIOITINH
+		{
+			get
+			{
+				return this._GIOITINH;
+			}
+			set
+			{
+				if ((this._GIOITINH != value))
+				{
+					this.OnGIOITINHChanging(value);
+					this.SendPropertyChanging();
+					this._GIOITINH = value;
+					this.SendPropertyChanged("GIOITINH");
+					this.OnGIOITINHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAISP_SANPHAM", Storage="_SANPHAMs", ThisKey="MALOAI", OtherKey="MALOAI")]
+		public EntitySet<SANPHAM> SANPHAMs
+		{
+			get
+			{
+				return this._SANPHAMs;
+			}
+			set
+			{
+				this._SANPHAMs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_SANPHAMs(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.LOAISP = this;
+		}
+		
+		private void detach_SANPHAMs(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.LOAISP = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NHASANXUAT")]
 	public partial class NHASANXUAT : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1324,8 +1348,6 @@ namespace ShoseStore.Models
 		
 		private string _TENSP;
 		
-		private string _MASIZE;
-		
 		private System.Nullable<decimal> _GIABAN;
 		
 		private string _MOTA;
@@ -1342,11 +1364,11 @@ namespace ShoseStore.Models
 		
 		private EntitySet<CTHOADON> _CTHOADONs;
 		
+		private EntitySet<SIZE> _SIZEs;
+		
 		private EntityRef<LOAISP> _LOAISP;
 		
 		private EntityRef<NHASANXUAT> _NHASANXUAT;
-		
-		private EntityRef<SIZE> _SIZE;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1360,8 +1382,6 @@ namespace ShoseStore.Models
     partial void OnMANSXChanged();
     partial void OnTENSPChanging(string value);
     partial void OnTENSPChanged();
-    partial void OnMASIZEChanging(string value);
-    partial void OnMASIZEChanged();
     partial void OnGIABANChanging(System.Nullable<decimal> value);
     partial void OnGIABANChanged();
     partial void OnMOTAChanging(string value);
@@ -1381,9 +1401,9 @@ namespace ShoseStore.Models
 		public SANPHAM()
 		{
 			this._CTHOADONs = new EntitySet<CTHOADON>(new Action<CTHOADON>(this.attach_CTHOADONs), new Action<CTHOADON>(this.detach_CTHOADONs));
+			this._SIZEs = new EntitySet<SIZE>(new Action<SIZE>(this.attach_SIZEs), new Action<SIZE>(this.detach_SIZEs));
 			this._LOAISP = default(EntityRef<LOAISP>);
 			this._NHASANXUAT = default(EntityRef<NHASANXUAT>);
-			this._SIZE = default(EntityRef<SIZE>);
 			OnCreated();
 		}
 		
@@ -1418,7 +1438,7 @@ namespace ShoseStore.Models
 			{
 				if ((this._MALOAI != value))
 				{
-					if ((this._LOAISP.HasLoadedOrAssignedValue || this._SIZE.HasLoadedOrAssignedValue))
+					if (this._LOAISP.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1471,26 +1491,6 @@ namespace ShoseStore.Models
 					this._TENSP = value;
 					this.SendPropertyChanged("TENSP");
 					this.OnTENSPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MASIZE", DbType="VarChar(50)")]
-		public string MASIZE
-		{
-			get
-			{
-				return this._MASIZE;
-			}
-			set
-			{
-				if ((this._MASIZE != value))
-				{
-					this.OnMASIZEChanging(value);
-					this.SendPropertyChanging();
-					this._MASIZE = value;
-					this.SendPropertyChanged("MASIZE");
-					this.OnMASIZEChanged();
 				}
 			}
 		}
@@ -1648,6 +1648,19 @@ namespace ShoseStore.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_SIZE", Storage="_SIZEs", ThisKey="MASP", OtherKey="MASP")]
+		public EntitySet<SIZE> SIZEs
+		{
+			get
+			{
+				return this._SIZEs;
+			}
+			set
+			{
+				this._SIZEs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAISP_SANPHAM", Storage="_LOAISP", ThisKey="MALOAI", OtherKey="MALOAI", IsForeignKey=true)]
 		public LOAISP LOAISP
 		{
@@ -1716,40 +1729,6 @@ namespace ShoseStore.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIZE_SANPHAM", Storage="_SIZE", ThisKey="MALOAI", OtherKey="MASIZE", IsForeignKey=true)]
-		public SIZE SIZE
-		{
-			get
-			{
-				return this._SIZE.Entity;
-			}
-			set
-			{
-				SIZE previousValue = this._SIZE.Entity;
-				if (((previousValue != value) 
-							|| (this._SIZE.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SIZE.Entity = null;
-						previousValue.SANPHAMs.Remove(this);
-					}
-					this._SIZE.Entity = value;
-					if ((value != null))
-					{
-						value.SANPHAMs.Add(this);
-						this._MALOAI = value.MASIZE;
-					}
-					else
-					{
-						this._MALOAI = default(int);
-					}
-					this.SendPropertyChanged("SIZE");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1781,6 +1760,18 @@ namespace ShoseStore.Models
 			this.SendPropertyChanging();
 			entity.SANPHAM = null;
 		}
+		
+		private void attach_SIZEs(SIZE entity)
+		{
+			this.SendPropertyChanging();
+			entity.SANPHAM = this;
+		}
+		
+		private void detach_SIZEs(SIZE entity)
+		{
+			this.SendPropertyChanging();
+			entity.SANPHAM = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SIZE")]
@@ -1791,9 +1782,11 @@ namespace ShoseStore.Models
 		
 		private int _MASIZE;
 		
+		private System.Nullable<int> _MASP;
+		
 		private System.Nullable<int> _SIZE1;
 		
-		private EntitySet<SANPHAM> _SANPHAMs;
+		private EntityRef<SANPHAM> _SANPHAM;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1801,13 +1794,15 @@ namespace ShoseStore.Models
     partial void OnCreated();
     partial void OnMASIZEChanging(int value);
     partial void OnMASIZEChanged();
+    partial void OnMASPChanging(System.Nullable<int> value);
+    partial void OnMASPChanged();
     partial void OnSIZE1Changing(System.Nullable<int> value);
     partial void OnSIZE1Changed();
     #endregion
 		
 		public SIZE()
 		{
-			this._SANPHAMs = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs), new Action<SANPHAM>(this.detach_SANPHAMs));
+			this._SANPHAM = default(EntityRef<SANPHAM>);
 			OnCreated();
 		}
 		
@@ -1827,6 +1822,30 @@ namespace ShoseStore.Models
 					this._MASIZE = value;
 					this.SendPropertyChanged("MASIZE");
 					this.OnMASIZEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MASP", DbType="Int")]
+		public System.Nullable<int> MASP
+		{
+			get
+			{
+				return this._MASP;
+			}
+			set
+			{
+				if ((this._MASP != value))
+				{
+					if (this._SANPHAM.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMASPChanging(value);
+					this.SendPropertyChanging();
+					this._MASP = value;
+					this.SendPropertyChanged("MASP");
+					this.OnMASPChanged();
 				}
 			}
 		}
@@ -1851,16 +1870,37 @@ namespace ShoseStore.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIZE_SANPHAM", Storage="_SANPHAMs", ThisKey="MASIZE", OtherKey="MALOAI")]
-		public EntitySet<SANPHAM> SANPHAMs
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_SIZE", Storage="_SANPHAM", ThisKey="MASP", OtherKey="MASP", IsForeignKey=true)]
+		public SANPHAM SANPHAM
 		{
 			get
 			{
-				return this._SANPHAMs;
+				return this._SANPHAM.Entity;
 			}
 			set
 			{
-				this._SANPHAMs.Assign(value);
+				SANPHAM previousValue = this._SANPHAM.Entity;
+				if (((previousValue != value) 
+							|| (this._SANPHAM.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SANPHAM.Entity = null;
+						previousValue.SIZEs.Remove(this);
+					}
+					this._SANPHAM.Entity = value;
+					if ((value != null))
+					{
+						value.SIZEs.Add(this);
+						this._MASP = value.MASP;
+					}
+					else
+					{
+						this._MASP = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("SANPHAM");
+				}
 			}
 		}
 		
@@ -1882,18 +1922,6 @@ namespace ShoseStore.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_SANPHAMs(SANPHAM entity)
-		{
-			this.SendPropertyChanging();
-			entity.SIZE = this;
-		}
-		
-		private void detach_SANPHAMs(SANPHAM entity)
-		{
-			this.SendPropertyChanging();
-			entity.SIZE = null;
 		}
 	}
 }

@@ -73,9 +73,34 @@ namespace ShoseStore.Controllers
 
         public ActionResult Details(int id)
         {
-            var sp = from s in data.SANPHAMs where s.MASP == id select s;
-            return View(sp.Single());
+            dynamic model = new System.Dynamic.ExpandoObject();
+            model.sp = (from s in data.SANPHAMs where s.MASP == id select s).Single();
+            model.size = from p in data.SIZEs
+                         where p.MASP == id
+                         group p by new { p.SIZE1 }
+                             into mygroup
+                         select mygroup.FirstOrDefault();
+          //  Session["MaLoai"] = (from a in data.SANPHAMs
+                             //    where a.MASP == id
+                             //    select a.MALOAI).FirstOrDefault();
+            model.SPLienQuan = from a in data.SANPHAMs
+                               from b in data.LOAISPs
+                               where (a.MALOAI == b.MALOAI) &&(a.MASP!=id)&& (b.MALOAI == (from a in data.SANPHAMs
+                                                                             where a.MASP == id
+                                                                             select a.MALOAI).FirstOrDefault())
+                               select a;
+            // ViewBag.size = new SelectList(data.SIZEs.Where(s => s.MASP == id).ToList(),"Size","Size");
+            return View(model);
         }
 
+        [HttpGet]
+        public ActionResult Sizetheosp(int id)
+        {
+
+            var item = from a in data.SIZEs
+                       where a.MASP == id
+                       select a;
+            return PartialView(item);
+        }
 	}
 }

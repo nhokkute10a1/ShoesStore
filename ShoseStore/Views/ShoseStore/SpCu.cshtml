@@ -20,8 +20,8 @@
                             <div class="product-pic-info-price">
                                 <span>@String.Format("{0:0,0}", sanpham.GIABAN) VNĐ</span>
                             </div>
-                            <div class="product-pic-info-cart">
-                                <a class="p-btn" href="@Url.Action("Themgiohang","GioHang",new { @iMasp= sanpham.MASP,@strUrl=Request.Url.ToString()})">Buy now</a>
+                            <div class="product-pic-info-cart">                                 
+                                    <a class="btn btn-danger" href="/ShoseStore/Details/@sanpham.MASP">Thêm giỏ hàng</a>                              
                             </div>
                             <div class="clearfix"> </div>
                         </div>

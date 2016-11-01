@@ -1,0 +1,41 @@
+﻿@model ShoseStore.Models.SIZE
+
+@{
+    ViewBag.Title = "DeleteSize";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>XÓA LOẠI SẢN PHẨM</h2>
+
+<h3>Bạn có thật sự muốn xóa nó không?</h3>
+<div>
+    <h4>SIZE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên sản phẩm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SANPHAM.TENSP)
+        </dd>
+
+        <dt>
+            Size
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SIZE1)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="XÓA" class="btn btn-default" /> |
+            @Html.ActionLink("Quay về trang trước", "QLSize")
+        </div>
+    }
+</div>

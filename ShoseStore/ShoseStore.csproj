@@ -206,6 +206,24 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\admin\animate.css" />
+    <Content Include="Content\admin\bootstrap-reset.css" />
+    <Content Include="Content\admin\bootstrap.min.css" />
+    <Content Include="Content\admin\dataTables.bootstrap.css" />
+    <Content Include="Content\admin\dataTables.responsive.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\grabbing.png" />
+    <Content Include="Content\images\footer-bg.png" />
+    <Content Include="images\logo\logoshose.png" />
+    <Content Include="Scripts\admin\dataTables.scroller.min.js" />
+    <Content Include="Content\admin\font-awesome.css" />
+    <Content Include="Content\admin\helper.css" />
+    <Content Include="Content\admin\ionicons.min.css" />
+    <Content Include="Content\admin\material-design-iconic-font.min.css" />
+    <Content Include="Content\admin\morris.css" />
+    <Content Include="Scripts\admin\responsive.bootstrap.min.js" />
+    <Content Include="Content\admin\style.css" />
+    <Content Include="Content\admin\sweet-alert.min.css" />
     <Content Include="Content\animate-custom.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -213,6 +231,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\etalage.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\ionicons.svg" />
+    <Content Include="Content\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Content\metisMenu.min.css" />
     <Content Include="Content\morris.css" />
@@ -222,6 +245,7 @@
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\ionicons.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\add.png" />
@@ -232,6 +256,7 @@
     <Content Include="images\footer-bg.png" />
     <Content Include="images\loading.gif" />
     <Content Include="images\logo.png" />
+    <Content Include="images\logo\avatar.jpg" />
     <Content Include="images\logo\background.jpg" />
     <Content Include="images\logo\bg.jpg" />
     <Content Include="images\logo\i1.png" />
@@ -290,6 +315,25 @@
     <Content Include="images\top-header-bg.png" />
     <Content Include="images\zoom.png" />
     <Content Include="fonts\scripti.ttf" />
+    <Content Include="Scripts\admin\bootstrap.min.js" />
+    <Content Include="Scripts\admin\chart-sparkline.js" />
+    <Content Include="Scripts\admin\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\admin\dataTables.responsive.js" />
+    <Content Include="Scripts\admin\jquery.app.js" />
+    <Content Include="Scripts\admin\jquery.counterup.min.js" />
+    <Content Include="Scripts\admin\jquery.dashboard.js" />
+    <Content Include="Scripts\admin\jquery.dataTables.min.js" />
+    <Content Include="Scripts\admin\jquery.js" />
+    <Content Include="Scripts\admin\jquery.nicescroll.js" />
+    <Content Include="Scripts\admin\jquery.scrollTo.min.js" />
+    <Content Include="Scripts\admin\jquery.sparkline.min.js" />
+    <Content Include="Scripts\admin\modernizr.min.js" />
+    <Content Include="Scripts\admin\morris.min.js" />
+    <Content Include="Scripts\admin\pace.min.js" />
+    <Content Include="Scripts\admin\raphael.min.js" />
+    <Content Include="Scripts\admin\skycons.min.js" />
+    <Content Include="Scripts\admin\waypoints.min.js" />
+    <Content Include="Scripts\admin\wow.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\easyResponsiveTabs.js" />
@@ -312,6 +356,24 @@
       <LastGenOutput>dbShoseStore.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="fonts\ionicons.ttf" />
+    <Content Include="fonts\ionicons.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\ionicons.ttf" />
+    <Content Include="Content\fonts\ionicons.woff" />
+    <Content Include="Content\fonts\scripti.ttf" />
+    <Content Include="Content\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\fonts\Material-Design-Iconic-Font.woff2" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -473,15 +535,17 @@
     <Content Include="Views\Admin\DonDatHang.cshtml" />
     <Content Include="Views\Admin\DetailsDDH.cshtml" />
     <Content Include="Views\Admin\EditDDH.cshtml" />
-    <Content Include="Views\Admin\CTDDH.cshtml" />
-    <Content Include="Views\Admin\DetailsCTDDH.cshtml" />
     <Content Include="Views\Admin\KhachHang.cshtml" />
     <Content Include="Views\Admin\DetailsKH.cshtml" />
     <Content Include="Views\TimKiem\KQTimKiem.cshtml" />
+    <Content Include="Views\ShoseStore\Sizetheosp.cshtml" />
+    <Content Include="Views\Admin\QLSize.cshtml" />
+    <Content Include="Views\Admin\CreateSize.cshtml" />
+    <Content Include="Views\Admin\DeleteSize.cshtml" />
+    <Content Include="Views\Admin\EditSize.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\font\" />
     <Folder Include="Views\UserAccount\" />
   </ItemGroup>
   <ItemGroup>
